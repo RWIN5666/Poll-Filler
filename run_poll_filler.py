@@ -5,18 +5,18 @@ from selenium.webdriver.firefox.options import Options
 import infos
 
 def fill_infos(browser):
-    name_form = browser.find_elements_by_id('yourname')
+    name_form = browser.find_element_by_id('yourname')
     name_form.send_keys(infos.name)
-    name_form.submit()
-    email_form = browser.find_elements_by_id('email')
+    
+    email_form = browser.find_element_by_id('email')
     email_form.send_keys(infos.email)
-    email_form.submit()
+    
     poll_title_form = browser.find_element_by_id('poll_title')
     poll_title_form.send_keys(infos.poll_title)
-    poll_title_form.submit()
+    
     description_form = browser.find_element_by_id('poll_comments')
     description_form.send_keys(infos.Description)
-    description_form.submit()
+    
 
 def set_poll_settings(browser):
     facultative_settings_button = browser.find_element_by_xpath('/html/body/div[3]/main/div[1]/div/form/div[7]/a')
@@ -40,6 +40,7 @@ def fill_first_poll_page():
     browser.get('https://framadate.org/create_poll.php?type=autre')
     fill_infos(browser)
     set_poll_settings(browser)
+    
 
 
 if __name__ == "__main__":
