@@ -40,7 +40,9 @@ def fill_first_poll_page():
     browser.get('https://framadate.org/create_poll.php?type=autre')
     fill_infos(browser)
     set_poll_settings(browser)
-    
+    submit_button_infos_page = browser.find_element_by_xpath('/html/body/div[3]/main/div[1]/div/form/p/button')
+    submit_button_infos_page.click()    
+
 
 
 if __name__ == "__main__":
