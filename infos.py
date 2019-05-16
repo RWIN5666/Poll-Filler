@@ -7,4 +7,5 @@ Description =''
 people_can_only_modify_their_vote = True
 receive_mail_for_each_vote = True 
 receive_mail_for_each_comment = True
+use_image_instead_of_text = False
 
