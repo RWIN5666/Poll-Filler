@@ -61,6 +61,8 @@ def fill_second_poll_page(browser):
     NEXT_BUTTON_XPATH = "//button[contains(text(), 'Next')]"
     browser.find_element_by_xpath(NEXT_BUTTON_XPATH).click()
     #browser.find_element_by_xpath('/html/body/div[3]/main/form/div/div/p/button[2]').click()
+    CREATE_POLL_BUTTON_XPATH= "//button[contains(text(),'Create the poll')]"
+    browser.find_element_by_xpath(CREATE_POLL_BUTTON_XPATH).click()
    
         
 if __name__ == "__main__":
@@ -68,3 +70,4 @@ if __name__ == "__main__":
     browser.get('https://framadate.org/create_poll.php?type=autre')
     fill_first_poll_page(browser)
     fill_second_poll_page(browser)
+    
