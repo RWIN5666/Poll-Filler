@@ -40,7 +40,7 @@ def fill_first_poll_page(browser):
 
 def fill_second_poll_page(browser):
     items_list = []
-    items_list = poll_items.create_item_list("Poll Filler/items.txt")
+    items_list = poll_items.create_item_list("items.txt")
     for elt in items_list:
         print(f"out item name {elt.name} & item link {elt.image_link}")
     # TODO: check list size if it is superior to 5
@@ -58,8 +58,10 @@ def fill_second_poll_page(browser):
         choice_form.send_keys(items_list[x].name)
         # TODO: fill the form with items names
 
-    browser.find_element_by_xpath('/html/body/div[1]/main/form/div[1]/div/div[8]/button').click()
-    browser.find_element_by_xpath('/html/body/div[3]/main/form/div/div/p/button[2]').click()
+    NEXT_BUTTON_XPATH = "//button[contains(text(), 'Next')]"
+    browser.find_element_by_xpath(NEXT_BUTTON_XPATH).click()
+    #browser.find_element_by_xpath('/html/body/div[3]/main/form/div/div/p/button[2]').click()
+   
         
 if __name__ == "__main__":
     browser = Firefox()
