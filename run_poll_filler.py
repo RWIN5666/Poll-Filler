@@ -4,39 +4,48 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 import infos, poll_items
 
+
 def fill_infos(browser):
-    name_form = browser.find_element_by_id('yourname')
+    name_form = browser.find_element_by_id("yourname")
     name_form.send_keys(infos.name)
-    
-    email_form = browser.find_element_by_id('email')
+
+    email_form = browser.find_element_by_id("email")
     email_form.send_keys(infos.email)
-    
-    poll_title_form = browser.find_element_by_id('poll_title')
+
+    poll_title_form = browser.find_element_by_id("poll_title")
     poll_title_form.send_keys(infos.poll_title)
-    
-    description_form = browser.find_element_by_id('poll_comments')
+
+    description_form = browser.find_element_by_id("poll_comments")
     description_form.send_keys(infos.Description)
-    
+
 
 def set_poll_settings(browser):
-    facultative_settings_button = browser.find_element_by_xpath('/html/body/div[3]/main/div[1]/div/form/div[7]/a')
+    facultative_settings_button = browser.find_element_by_xpath(
+        "/html/body/div[3]/main/div[1]/div/form/div[7]/a"
+    )
     facultative_settings_button.click()
-    if(infos.people_can_only_modify_their_vote == True):
-        browser.find_element_by_xpath('/html/body/div[3]/main/div[1]/div/form/div[9]/div[4]/div/div/label[2]').click()
-    if(infos.receive_mail_for_each_vote == True):
-        browser.find_element_by_id('receiveNewVotes').click()
-    if(infos.receive_mail_for_each_comment == True):
-        browser.find_element_by_id('receiveNewComments').click()
-        
+    if infos.people_can_only_modify_their_vote == True:
+        browser.find_element_by_xpath(
+            "/html/body/div[3]/main/div[1]/div/form/div[9]/div[4]/div/div/label[2]"
+        ).click()
+    if infos.receive_mail_for_each_vote == True:
+        browser.find_element_by_id("receiveNewVotes").click()
+    if infos.receive_mail_for_each_comment == True:
+        browser.find_element_by_id("receiveNewComments").click()
+
+
 def fill_first_poll_page(browser):
     # opts = Options()
     # opts.set_headless()
     # assert opts.headless  # Operating in headless mode
-    #browser = Firefox(options=opts)
+    # browser = Firefox(options=opts)
     fill_infos(browser)
     set_poll_settings(browser)
-    submit_button_infos_page = browser.find_element_by_xpath('/html/body/div[3]/main/div[1]/div/form/p/button')
-    submit_button_infos_page.click()    
+    submit_button_infos_page = browser.find_element_by_xpath(
+        "/html/body/div[3]/main/div[1]/div/form/p/button"
+    )
+    submit_button_infos_page.click()
+
 
 def fill_second_poll_page(browser):
     items_list = []
@@ -52,7 +61,7 @@ def fill_second_poll_page(browser):
         while remaining_items > 0:
             add_choice_button.click()
             remaining_items = remaining_items - 1
-    for x in range(0,len(items_list)):
+    for x in range(0, len(items_list)):
         id_string = "choice" + str(x)
         choice_form = browser.find_element_by_id(id_string)
         choice_form.send_keys(items_list[x].name)
@@ -60,14 +69,18 @@ def fill_second_poll_page(browser):
 
     NEXT_BUTTON_XPATH = "//button[contains(text(), 'Next')]"
     browser.find_element_by_xpath(NEXT_BUTTON_XPATH).click()
-    #browser.find_element_by_xpath('/html/body/div[3]/main/form/div/div/p/button[2]').click()
-    CREATE_POLL_BUTTON_XPATH= "//button[contains(text(),'Create the poll')]"
+    # browser.find_element_by_xpath('/html/body/div[3]/main/form/div/div/p/button[2]').click()
+
+
+def complete_poll_creation(browser):
+    CREATE_POLL_BUTTON_XPATH = "//button[contains(text(),'Create the poll')]"
     browser.find_element_by_xpath(CREATE_POLL_BUTTON_XPATH).click()
-   
-        
+
+
 if __name__ == "__main__":
     browser = Firefox()
-    browser.get('https://framadate.org/create_poll.php?type=autre')
+    browser.get("https://framadate.org/create_poll.php?type=autre")
     fill_first_poll_page(browser)
     fill_second_poll_page(browser)
-    
+    CREATE_POLL_BUTTON_XPATH = "//button[contains(text(),'Create the poll')]"
+    browser.find_element_by_xpath(CREATE_POLL_BUTTON_XPATH).click()
