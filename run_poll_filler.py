@@ -67,7 +67,7 @@ def fill_second_poll_page(browser):
         choice_form.send_keys(items_list[x].name)
         # TODO: fill the form with items names
 
-    NEXT_BUTTON_XPATH = "//button[contains(text(), 'Next')]"
+    NEXT_BUTTON_XPATH = "//button[@name='fin_sondage_autre']"
     browser.find_element_by_xpath(NEXT_BUTTON_XPATH).click()
     # browser.find_element_by_xpath('/html/body/div[3]/main/form/div/div/p/button[2]').click()
 
@@ -82,5 +82,5 @@ if __name__ == "__main__":
     browser.get("https://framadate.org/create_poll.php?type=autre")
     fill_first_poll_page(browser)
     fill_second_poll_page(browser)
-    CREATE_POLL_BUTTON_XPATH = "//button[contains(text(),'Create the poll')]"
+    CREATE_POLL_BUTTON_XPATH = "//button[@name='confirmation']"
     browser.find_element_by_xpath(CREATE_POLL_BUTTON_XPATH).click()
