@@ -33,12 +33,36 @@ $ sudo mv geckodriver /usr/local/bin/
 
 You're now ready to use the script !
 
+## Configure your poll
+
+You need to configure your poll by using a json configuration file. You can modify the `config.json` as base. All the keys in this file must be filled, if it's not the case, the script will fail.
+
+```
+{
+    "name": "Your name",
+    "email": "yourmail@somewhere.com",
+    "poll_title" : "Your Title",
+    "description": "Dummy description",
+    "people_can_only_modify_their_vote": true,
+    "receive_mail_for_each_vote": true,
+    "receive_mail_for_each_comment": true,
+    "use_image_instead_of_text": false,
+    "language": "EN",
+    "item_file": "items.txt"
+}
+```
+
 ## Running the script
 
 You can run the script just like this : 
 ```
 $ python3 run_poll_filler.py
 ```
+
+You can also specify a specific configuration file by this way :
+````
+$ python3 run_poll_filler.py --config=my_configuration_file.json
+````
 
 ## Built With
 
