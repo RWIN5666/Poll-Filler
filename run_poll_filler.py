@@ -4,7 +4,8 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from infos import Infos
 import poll_items
-import getopt, sys
+import getopt
+import sys
 
 
 def fill_infos(browser, configuration):
@@ -50,14 +51,13 @@ def fill_first_poll_page(browser, configuration):
 
 
 def fill_second_poll_page(browser, configuration):
+
     items_list = []
     items_list = poll_items.create_item_list(configuration.item_file)
     for elt in items_list:
         print(f"out item name {elt.name} & item link {elt.image_link}")
-    # TODO: check list size if it is superior to 5
     more_items = len(items_list) - 5
     if more_items > 0:
-        # TODO: if superior click on + button on the page
         add_choice_button = browser.find_element_by_xpath('//*[@id="add-a-choice"]')
         remaining_items = more_items
         while remaining_items > 0:
@@ -67,7 +67,6 @@ def fill_second_poll_page(browser, configuration):
         id_string = "choice" + str(x)
         choice_form = browser.find_element_by_id(id_string)
         choice_form.send_keys(items_list[x].name)
-        # TODO: fill the form with items names
 
     NEXT_BUTTON_XPATH = "//button[@name='fin_sondage_autre']"
     browser.find_element_by_xpath(NEXT_BUTTON_XPATH).click()
@@ -79,19 +78,19 @@ def complete_poll_creation(browser):
     browser.find_element_by_xpath(CREATE_POLL_BUTTON_XPATH).click()
 
 def usage():
-    print("python run_poll_filler.py [--config=config_file.json]")
+    print("No config file has been specified.\nRun the script this way :\npython run_poll_filler.py [--config=config_file.json]")
 
 if __name__ == "__main__":
     # Use config.json as default config file
     config_file = 'config.json'
-    # Get argments
+    # Get arguments
     try:
         opts, args = getopt.getopt(sys.argv[1:], "h", ["help", "config="])
     except getopt.GetoptError as err:
         print(err)
         usage()
         sys.exit(2)
-    # Parse arguments for configuration file
+    # Parse arguments from configuration file
     for o, a in opts:
         if o in ('-c', '--config'):
             config_file=a

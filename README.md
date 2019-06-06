@@ -23,7 +23,7 @@ $ python3 setup.py install
 
 #### Browser
 
-Last (but not least), you need to install [Firefox](https://www.mozilla.org/en-US/firefox/new/) and its [geckodriver](https://github.com/mozilla/geckodriver/releases). Someday, I may add Chromium support... But for now only Firefox is supported. In order to install geckodriver, follow these steps :
+Last (but not least), you need to install [Firefox](https://www.mozilla.org/en-US/firefox/new/) and its [geckodriver](https://github.com/mozilla/geckodriver/releases). Someday, I may add Chromium support... But for now only Firefox is supported. In order to install geckodriver, follow these steps (works with any Linux OS):
 ```
 $ wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz 
 $ tar xvf geckodriver*
@@ -31,7 +31,7 @@ $ chmod +x geckodriver
 $ sudo mv geckodriver /usr/local/bin/
 ```
 
-You're now ready to use the script !
+If your OS is Windows, you can download the executable [here](https://github.com/mozilla/geckodriver/releases) and move it to your working directory. Or you can add the path to the executable to your PATH environment variable. 
 
 ## Configure your poll
 
@@ -52,6 +52,8 @@ You need to configure your poll by using a json configuration file. You can modi
 }
 ```
 
+Well, now you're ready to use the script !
+
 ## Running the script
 
 You can run the script just like this : 
@@ -68,9 +70,15 @@ $ python3 run_poll_filler.py --config=my_configuration_file.json
 
 * [Selenium 3.x](https://seleniumhq.github.io/selenium/docs/api/py/index.html) - Web package that automate web browser interaction from Python
 
+## What's next ? (TO-DO List)
+
+- [ ] Add image support (replace poll item text with an image)
+- [ ] Open default email program with link of newly created poll in text body
+- [ ] Comment code 
+
 ## Contributing
 
-Please read incoming [CONTRIBUTING.md] for details.
+Please read incoming **CONTRIBUTING.md** for details.
 
 ## Versioning
 
