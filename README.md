@@ -52,6 +52,33 @@ You need to configure your poll by using a json configuration file. You can modi
 }
 ```
 
+## Item file
+
+Item file contains your poll choices, it must contains one choice per line formated as follow:
+```text of choice(link)[image_link]```
+
+It's very important to put every parenthesis and brackets.
+
+Example of allowed items:
+
+```
+text(link)[image]
+text(link)[]
+text()[image]
+text()[]
+(link)[]
+(link)[image]
+()[image]
+```
+
+Example of invalid items:
+
+```
+text(link)
+text[image]
+
+```
+
 Well, now you're ready to use the script !
 
 ## Running the script

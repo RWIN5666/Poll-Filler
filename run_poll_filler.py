@@ -70,7 +70,7 @@ def fill_second_poll_page(browser, configuration):
     for x in range(0, len(items_list)):
         id_string = "choice" + str(x)
         choice_form = browser.find_element_by_id(id_string)
-        choice_form.send_keys(items_list[x].name)
+        choice_form.send_keys(items_list[x].build_string())
 
     NEXT_BUTTON_XPATH = "//button[@name='fin_sondage_autre']"
     browser.find_element_by_xpath(NEXT_BUTTON_XPATH).click()
