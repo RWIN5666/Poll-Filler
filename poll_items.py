@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import logging
 
 class Poll_Item:
     def __init__(self, name, image_link):
@@ -19,7 +20,7 @@ def create_item_list(items_file_path):
         items_list = []
         items_lines = items_file.readlines()
         for elt_line in items_lines:
-            print(elt_line)
+            logging.debug(elt_line)
             # first word is item's name
             # second word between parenthesis is the link
             # between brackets the number of times the item has been chosen in previous polls
@@ -27,7 +28,7 @@ def create_item_list(items_file_path):
             if None != m:
                 item_name = m.group(1)
                 item_link = m.group(2)
-                print(f"item link {item_link} and item name {item_name}")
+                logging.debug(f"item link {item_link} and item name {item_name}")
                 new_item = Poll_Item(item_name, item_link)
                 items_list.append(new_item)
             

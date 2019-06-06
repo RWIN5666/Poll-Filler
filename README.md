@@ -66,6 +66,16 @@ You can also specify a specific configuration file by this way :
 $ python3 run_poll_filler.py --config=my_configuration_file.json
 ````
 
+For testing purposes, you can modify log level by adding the following options `--log=` with one of the following value:
+
+ - DEBUG
+ - INFO
+ - WARNING
+ - ERROR
+ - CRITICAL
+
+ For more information in logging, refer to [python documentation](https://docs.python.org/fr/3/howto/logging.html)
+
 ## Built With
 
 * [Selenium 3.x](https://seleniumhq.github.io/selenium/docs/api/py/index.html) - Web package that automate web browser interaction from Python
